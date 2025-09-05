@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Car</title>
+</head>
+
+<body>
+    <h1>Add New Car</h1>
+    <form action="/cars" method="POST">
+        <div>
+            <label for="model">Model: </label>
+            <input type="text" name="model" id="model" maxlength="25" required />
+        </div>
+        <div>
+            <label for="year">Year: </label>
+            <input type="text" name="year" id="year" maxlength="4" required/>
+        </div>
+        <div>
+            <label for="color">Color: </label>
+            <input type="text" name="color" id="color" maxlength="20" required/>
+        </div>
+        <div>
+            <label for = "isUsed">Pre-owned: </label>
+            <input type = "checkbox" name="isUsed" id = "isUsed" />
+        </div>
+            <label for="description">Description: </label>
+            <input type="text" name="description" id="description" maxlength="250"> <!--ASK JAN. Why did my textare tag populate with my EJS file code?-->
+            <!--<textarea name="description" id="description" maxlength="250"> CODE IN QUESTION--> 
+        <div>
+        <button type="submit">Add Car</button>
+        </div>
+    </form>
+    <a href="/cars">Back to Cars</a>
+</body>
+</html>

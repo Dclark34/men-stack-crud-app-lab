@@ -80,6 +80,14 @@ app.delete("/cars/:carId" , async (req, res) => {
 });
 
 
+//EDIT ROUTE (PUT tricked Get and POST) 7th route. (U in CRUD).
+app.get("/cars/:carId/edit" , async (req, res) => {
+    const thisCar = await Car.findById(req.params.carId);
+    res.render("/cars/edit.ejs")
+});
+
+
+
 
 
 
