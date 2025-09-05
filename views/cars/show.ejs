@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= cars.model %></title>
+</head>
+<body>
+    <h1><%= cars.model %></h1>
+    <p><%= cars.year %></p>
+    <p><%= cars.color %></p>
+
+    <% if (cars.isUsed) { %>
+    <p>Pre-owned</p>
+    <% } else { %>
+    <p>New</p>
+    <% } %>    
+
+    <% if (cars.description) { %>
+        <p>Description: <%= cars.description %></p>
+    <% } else { %>
+        <p>This Car Currently does not have a Description</p>
+    <% } %>
+    
+    <form action="/cars/<%=cars._id%>?_method=DELETE" method="POST">
+        <button type="submit">DELETE <%= cars.model %></button>
+    </form>
+
+        <a href="/cars">Back to Cars</a>
+</body>
+</html>

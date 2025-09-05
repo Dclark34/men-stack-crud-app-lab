@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VAInventory</title>
+</head>
+<body>
+    <h1>Vally Auto Cars</h1>
+    <h2> Our Current Inventory</h2>
+    <ul>
+        <% cars.forEach(car => { %>
+        <li>
+            <a href="/cars/<%= car._id %>"> <%= car.model %> </a>
+        </li>
+        <% }); %>
+    </ul>
+    <!--<a href="/cars">Browse All Cars</a>-->
+    <a href="/cars/new">Add New Car</a>
+    <a href="/">Back to Home</a>
+</body>
+</html>
