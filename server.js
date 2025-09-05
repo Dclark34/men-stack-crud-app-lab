@@ -33,7 +33,12 @@ app.get('/', async (req, res) => {
     res.render("index.ejs")
 });
 
-
+//INDEX ROUTE (Get) (4th route) (all inventory)
+app.get('/cars', async (req, res) => {
+    const allCars = await Car.find(); //finds all entries in DB and stores in variable.
+    console.log(allCars);//test to see if path to db is correct
+    res.render("cars/index.ejs", { cars: allCars});
+});
 
 
 //ADD NEW CAR (2 parts. GET and POST in our RESTful routing) (these two will be our C in CRUD)
@@ -55,15 +60,6 @@ app.post("/cars", async (req, res) => {
 
 
 
-//INDEX ROUTE (Get) (4th route) (all inventory)
-app.get('/cars', async (req, res) => {
-    const allCars = await Car.find(); //finds all entries in DB and stores in variable.
-    console.log(allCars);//test to see if path to db is correct
-    res.render("cars/index.ejs", { cars: allCars});
-});
-
-
-
 //SHOW ROUTE (GET. Details of Specific item by id) (5th route) (This will be our R in CRUD)
 
 app.get("/cars/:carId", async (req, res) => {
@@ -80,10 +76,21 @@ app.delete("/cars/:carId" , async (req, res) => {
 });
 
 
-//EDIT ROUTE (PUT tricked Get and POST) 7th route. (U in CRUD).
+//EDIT ROUTE (Part 1 of Update. GET Route. Edit Form) 7th route. (U in CRUD).
 app.get("/cars/:carId/edit" , async (req, res) => {
     const thisCar = await Car.findById(req.params.carId);
-    res.render("/cars/edit.ejs")
+    res.render("cars/edit.ejs", {cars: thisCar});
+});
+
+
+//UPDATE ROUTE (Part 2 of UPDATE. PUT) 8th Route
+app.put("/cars/:carId", async (req, res) => {
+ if (req.body.isUsed === "on") {
+    req.body.isUsed = true;
+ } else {
+    req.body.isUsed = false;
+ } await Car.findByIdAndUpdate(req.params.carId, req.body);
+ res.redirect(`/cars/${req.params.carId}`);
 });
 
 
